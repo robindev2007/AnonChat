@@ -1,6 +1,5 @@
 "use client";
 import { createSupabaseBrowserClient } from "@/utils/supabase/client";
-import { useRouter } from "next/navigation";
 import Peer from "peerjs";
 import React, {
   createContext,
@@ -44,8 +43,6 @@ function ChatContextProvider({ children }: { children: ReactNode }) {
   const [remtoteVideoStrem, setRemtoteVideoStrem] = useState<MediaStream>();
   const [activeUsers, setActiveUsres] = useState<ActiveUserT[]>([]);
 
-  const router = useRouter();
-
   const peerRef = useRef<Peer | null>(null);
 
   const supabase = createSupabaseBrowserClient();
@@ -71,7 +68,7 @@ function ChatContextProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    router.push("/chat");
+    // router.push("/chat");
 
     const randomUserId = activeUsers[0].peer_id;
 
@@ -150,7 +147,7 @@ function ChatContextProvider({ children }: { children: ReactNode }) {
       conn.on("error", (err) => {
         console.error("Connection error:", err);
       });
-      router.push("/chat");
+      // router.push("/chat");
     });
 
     peer.on("error", (err) => {
@@ -208,8 +205,7 @@ function ChatContextProvider({ children }: { children: ReactNode }) {
         remtoteVideoStrem,
         setRemotePeerId,
         sendCall,
-      }}
-    >
+      }}>
       {children}
     </ChatContext.Provider>
   );
