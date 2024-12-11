@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Jost } from "next/font/google";
 import "./globals.css";
-import ChatContextProvider from "@/context/ChatContextProvider";
 import { Toaster } from "sonner";
 
 const jost = Jost({
@@ -20,12 +19,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="golden">
+    <html lang="en" className="dark">
       <body className={`${jost.className} antialiased`}>
-        <ChatContextProvider>
-          <Toaster position="top-right" richColors />
-          <main className="flex h-full min-h-screen flex-col">{children}</main>
-        </ChatContextProvider>
+        {/* <ChatContextProvider> */}
+        <Toaster position="top-right" richColors />
+        <main className="flex h-full min-h-screen flex-col">{children}</main>
+        {/* </ChatContextProvider> */}
       </body>
     </html>
   );
